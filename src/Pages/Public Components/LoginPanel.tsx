@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash, faXmark} from "@fortawesome/free-solid-svg-icons";
 import { LoginPanelProps } from "./Types/Interfaces";
-export const LoginPanel = ({ loginPanel, loginHandler }: LoginPanelProps) => {
+export const LoginPanel = ({ loginPanel, loginHandler, registerPanel }: LoginPanelProps) => {
   const [passwordVisibility, setPasswordVisibility] = useState<boolean>(false);
   return (
     <div
@@ -14,22 +14,29 @@ export const LoginPanel = ({ loginPanel, loginHandler }: LoginPanelProps) => {
         loginPanelElement!.opacity = "0";
         loginPanelElement!.visibility = "hidden";
         loginPanel!.current?.classList.add("-translate-y-30");
+        registerPanel!.current?.classList.add("invisible");
+        registerPanel!.current?.classList.add("-translate-y-30");
+        registerPanel.current!.style.opacity = '0';
         setTimeout(() => {
           loginHandler.current?.classList.remove("fixed");
           loginHandler.current?.classList.remove("inset-0");
           loginHandler.current?.classList.add("hidden");
           loginHandler.current?.classList.remove("flex");
+          loginPanel!.current?.classList.remove("-translate-x-[80vw]");
+          registerPanel!.current?.classList.remove("-translate-y-30");
+          registerPanel!.current?.classList.add("translate-x-[70vw]");
+          registerPanel.current!.style.opacity = '100';
         },300);
       }}
     >
       <div
         ref={loginPanel}
-        className="flex items-center justify-center transition-all -translate-y-30 opacity-0 invisible"
+        className="flex items-center justify-center transition-all -translate-y-30 opacity-0 invisible duration-300"
         onClick={(e) => {
           e.stopPropagation();
         }}
       >
-        <div className="h-fit bg-[#222222] flex flex-col gap-10 rounded-[20px] pt-10 w-150 relative ">
+        <div className="h-fit bg-[#222222] flex flex-col gap-10 rounded-[20px] pt-10 w-150 relative">
           <div className="flex flex-col items-center">
             <div
               id="close-hover"
@@ -121,7 +128,14 @@ export const LoginPanel = ({ loginPanel, loginHandler }: LoginPanelProps) => {
             <div className="bg-[#2d2d2d] w-full rounded-b-[20px] h-20 flex items-center justify-center">
               <label className="text-[#F5F5F5]">
                 Don't have an account?{" "}
-                <span className="text-[#66d15f] cursor-pointer hover:underline">
+                <span
+                  className="text-[#66d15f] cursor-pointer hover:underline"
+                  onClick={() => {
+                    loginPanel.current?.classList.add('-translate-x-[80vw]');
+                    registerPanel.current?.classList.remove('translate-x-[70vw]');
+                    registerPanel.current?.classList.remove('invisible');
+                  }}
+                >
                   Register
                 </span>
               </label>
