@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { RegisterPanelProps } from "./Types/Interfaces";
 
-export const RegisterPanel = () => {
+export const RegisterPanel = ({registerPanel, loginPanel} : RegisterPanelProps)  => {
   const [passwordVisibility, setPasswordVisibility] = useState<boolean>(false);
   const [confirmPasswordVisibility, setConfirmPasswordVisibility] =
     useState<boolean>(false);
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center translate-x-[70vw] transition-all duration-300 invisible" ref={registerPanel}>
       <div className="h-fit bg-[#222222] flex flex-col gap-10 rounded-[20px] pt-10 w-150 relative ">
         <div className="flex flex-col items-center">
           <div
-            id="closeHover"
+            id="close-hover"
             className="absolute -right-4 -top-6 bg-[#444444] rounded-full w-10 h-10 text-center flex items-center justify-center cursor-pointer transition-all"
           >
             <FontAwesomeIcon
@@ -131,7 +132,11 @@ export const RegisterPanel = () => {
           <div className="bg-[#2d2d2d] w-full rounded-b-[20px] h-20 flex items-center justify-center">
             <label className="text-[#F5F5F5]">
               Already have an account?{" "}
-              <span className="text-[#66d15f] cursor-pointer hover:underline">
+              <span className="text-[#66d15f] cursor-pointer hover:underline" onClick={() => {
+                loginPanel.current?.classList.remove('-translate-x-[80vw]');
+                registerPanel.current?.classList.add('translate-x-[70vw]');
+                registerPanel.current?.classList.add('invisible');
+              }}>
                 Login
               </span>
             </label>
