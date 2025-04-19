@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash, faXmark} from "@fortawesome/free-solid-svg-icons";
 import { LoginPanelProps } from "./Types/Interfaces";
 export const LoginPanel = ({ loginPanel, loginHandler }: LoginPanelProps) => {
   const [passwordVisibility, setPasswordVisibility] = useState<boolean>(false);
   return (
     <div
       ref={loginHandler}
-      className="flex items-center bg-black/80 justify-center w-screen h-screen invisible"
+      className="items-center bg-black/80 justify-center w-screen h-screen hidden fixed inset-0 z-50"
+
       onClick={() => {
         const loginPanelElement = loginPanel.current?.style;
         loginPanelElement!.opacity = "0";
@@ -16,7 +17,8 @@ export const LoginPanel = ({ loginPanel, loginHandler }: LoginPanelProps) => {
         setTimeout(() => {
           loginHandler.current?.classList.remove("fixed");
           loginHandler.current?.classList.remove("inset-0");
-          loginHandler.current?.classList.add("invisible");
+          loginHandler.current?.classList.add("hidden");
+          loginHandler.current?.classList.remove("flex");
         },300);
       }}
     >
