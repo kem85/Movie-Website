@@ -1,7 +1,7 @@
 // src/layouts/MainLayout.tsx
 // import { Outlet } from "react-router-dom";
 import "../../index.css";
-import Navbar from "./Components/Navbar";
+import { Navbar } from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer";
 import { LoginPanel } from "../Public Components/LoginPanel";
 import { RegisterPanel } from "../Public Components/RegisterPanel";
@@ -15,7 +15,7 @@ const MainLayout = () => {
   const mainDiv = useRef<HTMLDivElement | null>(null);
   return (
     <div ref={mainDiv} className="overflow-x-hidden">
-      <Navbar />
+      <Navbar registerPanel={registerPanel}/>
       <button
         className="bg-blue-300 p-3 rounded-xl cursor-pointer z-20"
         onClick={() => {

@@ -8,12 +8,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useRef } from "react";
 import { LoginPanel } from "../../../Public Components/LoginPanel";
-export default function Navbar() {
+import { NavbarProps } from "../../../Public Components/Types/Interfaces";
+export  const Navbar = ({registerPanel} : NavbarProps) => {
   const loginPanel = useRef<HTMLDivElement | null>(null);
   const loginHandler = useRef<HTMLDivElement | null>(null);
   return (
     <>
-      <LoginPanel loginPanel={loginPanel} loginHandler={loginHandler} />
+      <LoginPanel registerPanel={registerPanel} loginPanel={loginPanel} loginHandler={loginHandler} />
       <nav className="flex text-white bg-[green] h-20">
         <div className="flex justify-between items-center text-white bg-[green] h-20 px-[50px] w-[100vw]">
           <div className="flex items-center gap-6">

@@ -7,7 +7,7 @@ export const LoginPanel = ({ loginPanel, loginHandler, registerPanel }: LoginPan
   return (
     <div
       ref={loginHandler}
-      className="items-center bg-black/80 justify-center w-screen h-screen hidden fixed inset-0 z-50"
+      className="items-center bg-black/80 justify-center w-screen h-screen hidden fixed inset-0 z-1"
 
       onClick={() => {
         const loginPanelElement = loginPanel.current?.style;

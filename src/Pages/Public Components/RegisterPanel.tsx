@@ -9,7 +9,7 @@ export const RegisterPanel = ({registerPanel, loginPanel} : RegisterPanelProps) 
     useState<boolean>(false);
   return (
     <div className="flex items-center justify-center translate-x-[70vw] transition-all duration-300 invisible" ref={registerPanel}>
-      <div className="h-fit bg-[#222222] flex flex-col gap-10 rounded-[20px] pt-10 w-150 relative ">
+      <div className="h-fit bg-[#222222] flex flex-col gap-10 rounded-[20px] pt-10 w-150 relative">
         <div className="flex flex-col items-center">
           <div
             id="close-hover"
